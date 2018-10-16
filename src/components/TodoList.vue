@@ -50,20 +50,24 @@ import {
   MARK_TODO,
 } from '../store/mutation-types';
 
-@Component({
-  computed: {
-    ...mapGetters([
-      'allTodos',
-      'doneTodos',
-      'activeTodos',
-    ]),
-  },
-})
+@Component
 export default class TodoList extends Vue {
   @Prop()
   private filter!: string;
 
   private newName = '';
+
+  get allTodos() {
+    return this.$store.getters.allTodos;
+  }
+
+  get doneTodos() {
+    return this.$store.getters.doneTodos;
+  }
+
+  get activeTodos() {
+    return this.$store.getters.activeTodos;
+  }
 
   get list() {
     switch (true) {
