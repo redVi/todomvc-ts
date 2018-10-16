@@ -43,6 +43,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 import { Todo } from '../types';
+import {
+  REMOVE_TODO,
+  UPDATE_TODO,
+  EDIT_TODO,
+  MARK_TODO,
+} from '../store/mutation-types';
 
 @Component({
   computed: {
@@ -68,11 +74,11 @@ export default class TodoList extends Vue {
   }
 
   private removeTodo(todo: Todo) {
-    this.$store.dispatch('REMOVE_TODO', todo);
+    this.$store.dispatch(REMOVE_TODO, todo);
   }
 
   private updateTodo(todo: Todo, name: string) {
-    this.$store.dispatch('UPDATE_TODO', {
+    this.$store.dispatch(UPDATE_TODO, {
       todo,
       newName: name || todo.name,
     });
@@ -80,12 +86,12 @@ export default class TodoList extends Vue {
 
   private editTodo(todo: Todo) {
     this.newName = todo.name;
-    this.$store.dispatch('EDIT_TODO', todo);
+    this.$store.dispatch(EDIT_TODO, todo);
   }
 
   private markTodo(todo: Todo, event) {
     this.newName = event.target.value;
-    this.$store.dispatch('MARK_TODO', todo);
+    this.$store.dispatch(MARK_TODO, todo);
   }
 }
 </script>

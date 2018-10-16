@@ -1,15 +1,13 @@
 <template>
-    <header class="header">
-        <h1>{{ heading }}</h1>
-    </header>
+  <header class="header">
+    <h1>todos</h1>
+  </header>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class TheHeader extends Vue {
-  private heading = 'todos';
-}
+export default class TheHeader extends Vue {}
 </script>
 

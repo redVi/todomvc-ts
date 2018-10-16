@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <section class="todoapp">
       <the-header />
       <the-input />
@@ -8,6 +9,7 @@
         <input
           @click="markTodos"
           class="toggle-all"
+          :checked="!doneTodos"
           type="checkbox"
         >
 
@@ -24,6 +26,7 @@
       <p>Double-click to edit a todo</p>
       <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
     </footer>
+
   </div>
 </template>
 
@@ -44,12 +47,15 @@ import TheFooter from './components/TheFooter.vue';
   },
 })
 export default class App extends Vue {
-  private flag = false;
-  private filteredTodos = [];
+  private flag = true;
   private currentFilter = 'active';
 
+  get doneTodos() {
+    return this.$store.state.todos.every((todo) => todo.done);
+  }
+
   private markTodos() {
-    this.flag = !this.flag;
+    this.flag = this.doneTodos ? false : true;
     this.$store.dispatch('MARK_TODOS', this.flag);
   }
 
@@ -60,5 +66,5 @@ export default class App extends Vue {
 </script>
 
 <style>
-  @import url("./assets/todomvc.css");
+@import url("./assets/todomvc.css");
 </style>

@@ -1,9 +1,12 @@
 <template>
   <footer class="footer">
+
     <span class="todo-count">
       <strong>{{ activeTodos.length | pluralize }}</strong>
     </span>
+
     <ul class="filters">
+
       <li v-for="(item, index) in filterList" :key="index">
         <a
           :class="{ 'selected': item === selectedFilter }"
@@ -11,7 +14,17 @@
           @click.prevent="setFilter(item)"
         >{{ item }}</a>
       </li>
+
     </ul>
+
+    <button
+      v-show="doneTodos.length"
+      class="clear-completed"
+      @click="clearCompleted"
+    >
+      Clear completed
+    </button>
+
   </footer>
 </template>
 
@@ -19,10 +32,14 @@
 import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 import { Todo } from '../types';
+import { CLEAR_COMPLETED } from '../store/mutation-types';
 
 @Component({
   computed: {
-    ...mapGetters(['activeTodos']),
+    ...mapGetters([
+      'activeTodos',
+      'doneTodos',
+    ]),
   },
   filters: {
     pluralize(length?: number): string {
@@ -38,6 +55,10 @@ export default class TheFooter extends Vue {
   @Emit()
   private filter(name) {
     return name;
+  }
+
+  private clearCompleted() {
+    this.$store.dispatch(CLEAR_COMPLETED);
   }
 
   private setFilter(name: string) {

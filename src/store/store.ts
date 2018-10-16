@@ -7,6 +7,7 @@ import {
   EDIT_TODO,
   MARK_TODO,
   MARK_TODOS,
+  CLEAR_COMPLETED,
 } from './mutation-types';
 
 Vue.use(Vuex);
@@ -19,9 +20,9 @@ const findItem = (state, todo) => {
 export default new Vuex.Store({
   state: {
     todos: [
-      { name: 'Hello', done: true, editing: false },
-      { name: 'Bob', done: false, editing: false },
-      { name: 'Helen', done: true, editing: false },
+      { name: 'To make myself happy', done: true, editing: false },
+      { name: 'Buy the car', done: false, editing: false },
+      { name: 'Become President of USA', done: false, editing: false },
     ],
   },
   getters: {
@@ -58,14 +59,18 @@ export default new Vuex.Store({
     [MARK_TODOS](state, flag: boolean) {
       state.todos.forEach((todo) => todo.done = flag);
     },
+    [CLEAR_COMPLETED](state) {
+      state.todos = state.todos.filter((todo) => !todo.done);
+    },
   },
   actions: {
     [ADD_TODO]: ({commit}, name: string) => commit('ADD_TODO', name),
     [REMOVE_TODO]: ({commit}, todo: object) => commit('REMOVE_TODO', todo),
     [UPDATE_TODO]: ({commit}, payload: object) => commit('UPDATE_TODO', payload),
     [MARK_TODO]: ({commit}, todo: object) => commit('MARK_TODO', todo),
-    [MARK_TODOS]: ({ commit }, flag: boolean) => commit('MARK_TODOS', flag),
-    [EDIT_TODO]: ({ commit }, todo) => commit('EDIT_TODO', todo),
+    [MARK_TODOS]: ({commit}, flag: boolean) => commit('MARK_TODOS', flag),
+    [EDIT_TODO]: ({commit}, todo) => commit('EDIT_TODO', todo),
+    [CLEAR_COMPLETED]: ({commit}) => commit('CLEAR_COMPLETED'),
   },
   strict: process.env.NODE_ENV !== 'production',
 });
