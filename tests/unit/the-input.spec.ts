@@ -1,5 +1,3 @@
-import { shallowMount } from '@vue/test-utils';
-import TheInput from '@/components/TheInput.vue';
 import mutations from '@/store/mutations';
 
 describe('TheInput.vue', () => {
