@@ -13,10 +13,7 @@
           type="checkbox"
         >
 
-        <todo-list
-          :todos="filteredTodos"
-          :filter="currentFilter"
-        />
+        <todo-list :filter="currentFilter" />
       </main>
 
       <the-footer @filter="setFilter" />
