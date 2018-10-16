@@ -13,10 +13,10 @@
 
         <input
           :checked="todo.done"
+          :value="newName"
           class="toggle"
           type="checkbox"
-          @click.prevent="markTodo(todo)"
-          v-model="newName"
+          @click.prevent="markTodo(todo, $event)"
         >
 
         <label>{{ todo.name }}</label>
@@ -41,16 +41,30 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
 import { Todo } from '../types';
 
-@Component()
+@Component({
+  computed: {
+    ...mapGetters([
+      'allTodos',
+      'doneTodos',
+      'activeTodos',
+    ]),
+  },
+})
 export default class TodoList extends Vue {
-  @Prop() private todos!: [Todo];
+  @Prop()
+  private filter!: string;
 
   private newName = '';
 
   get list() {
-    return this.todos.length ? this.todos : [];
+    switch (true) {
+      case this.filter === 'done': return this.doneTodos;
+      case this.filter === 'all': return this.allTodos;
+      default: return this.activeTodos;
+    }
   }
 
   private removeTodo(todo: Todo) {
@@ -69,7 +83,8 @@ export default class TodoList extends Vue {
     this.$store.dispatch('EDIT_TODO', todo);
   }
 
-  private markTodo(todo: Todo) {
+  private markTodo(todo: Todo, event) {
+    this.newName = event.target.value;
     this.$store.dispatch('MARK_TODO', todo);
   }
 }

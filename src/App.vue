@@ -2,7 +2,7 @@
   <div id="app">
     <section class="todoapp">
       <the-header />
-      <the-input @clear="clearInput($event)" />
+      <the-input />
 
       <main class="main">
         <input
@@ -10,7 +10,11 @@
           class="toggle-all"
           type="checkbox"
         >
-        <todo-list :todos="filteredTodos" />
+
+        <todo-list
+          :todos="filteredTodos"
+          :filter="currentFilter"
+        />
       </main>
 
       <the-footer @filter="setFilter" />
@@ -38,39 +42,19 @@ import TheFooter from './components/TheFooter.vue';
     TodoList,
     TheFooter,
   },
-  computed: {
-    ...mapGetters([
-      'allTodos',
-      'doneTodos',
-      'activeTodos',
-    ]),
-  },
 })
 export default class App extends Vue {
   private flag = false;
   private filteredTodos = [];
+  private currentFilter = 'active';
 
   private markTodos() {
     this.flag = !this.flag;
     this.$store.dispatch('MARK_TODOS', this.flag);
   }
 
-  private setFilter(event) {
-    switch (event) {
-      case 'done':
-        this.filteredTodos = this.doneTodos;
-        break;
-      case 'all':
-        this.filteredTodos = this.allTodos;
-        break;
-      default:
-        this.filteredTodos = this.activeTodos;
-        break;
-    }
-  }
-
-  beforeMount() {
-    this.setFilter();
+  private setFilter(event: string) {
+    this.currentFilter = event;
   }
 }
 </script>

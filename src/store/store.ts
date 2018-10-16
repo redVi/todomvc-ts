@@ -18,7 +18,6 @@ const findItem = (state, todo) => {
 
 export default new Vuex.Store({
   state: {
-    visibleTodos: [],
     todos: [
       { name: 'Hello', done: true, editing: false },
       { name: 'Bob', done: false, editing: false },
@@ -36,24 +35,21 @@ export default new Vuex.Store({
         editing: false,
         done: false,
         name,
-      }
+      };
+
       state.todos.unshift(todo);
     },
     [REMOVE_TODO](state, todo) {
       state.todos.splice(state.todos.indexOf(todo), 1);
     },
     [UPDATE_TODO](state, {todo, newName}) {
-      const elem = state.todos.find((t) => t.name === todo.name);
-      if (elem) {
-        elem.name = newName;
-        elem.editing = false;
-      }
+      const elem = findItem(state, todo);
+      elem.name = newName;
+      elem.editing = false;
     },
     [EDIT_TODO](state, todo) {
-      const elem = state.todos.find((t) => t.name === todo.name);
-      if (elem) {
-        elem.editing = true;
-      }
+      const elem = findItem(state, todo);
+      elem.editing = true;
     },
     [MARK_TODO](state, todo) {
       const elem = findItem(state, todo);

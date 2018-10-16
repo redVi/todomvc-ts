@@ -6,8 +6,8 @@
     <ul class="filters">
       <li v-for="(item, index) in filterList" :key="index">
         <a
-          :href="`%23/${item}`"
           :class="{ 'selected': item === selectedFilter }"
+          href=""
           @click.prevent="setFilter(item)"
         >{{ item }}</a>
       </li>
@@ -27,7 +27,6 @@ import { Todo } from '../types';
   filters: {
     pluralize(length?: number): string {
       const word = length === 1 ? 'item' : 'items';
-
       return `${length} ${word} left`;
     },
   },
