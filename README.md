@@ -1,10 +1,8 @@
 # todo-app
 
-<p align="center">
-  <img src="https://travis-ci.org/redVi/todomvc-ts.svg?branch=master" alt="travis">
-</p>
+<img src="https://travis-ci.org/redVi/todomvc-ts.svg?branch=master" alt="travis">
 
-Todo MVC on Vue, Vuex and TypeScript.
+[Todo MVC](http://redvi.github.io/todomvc-ts/) on Vue, Vuex and TypeScript.
 __Work in progress__.
 
 ## commands
