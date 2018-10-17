@@ -3,8 +3,6 @@ import App from './App.vue';
 import store from './store';
 import './registerServiceWorker';
 
-Vue.config.productionTip = process.env.NODE_ENV !== 'production' ? false : true;
-
 new Vue({
   store,
   render: (h) => h(App),
