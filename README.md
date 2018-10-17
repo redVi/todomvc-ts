@@ -3,7 +3,6 @@
 <img src="https://travis-ci.org/redVi/todomvc-ts.svg?branch=master" alt="travis">
 
 [Todo MVC](http://redvi.github.io/todomvc-ts/) on Vue, Vuex and TypeScript.
-__Work in progress__.
 
 ## commands
 ```
@@ -14,4 +13,3 @@ npm run test      - Run tests
 npm run lint      - Lints and fixes files
 npm run test:unit - Run your unit tests
 ```
-
