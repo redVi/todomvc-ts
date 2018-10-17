@@ -18,9 +18,8 @@
 
 <script lang="ts">
 import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
-import { mapGetters } from 'vuex';
-import { Todo } from '@/types';
-import { CLEAR_COMPLETED } from '@/store/mutation-types';
+import { mapGetters, mapActions } from 'vuex';
+import { Todo } from '@/store/types';
 
 import TodoButton from '@/components/TodoButton.vue';
 import TodoCount from '@/components/TodoCount.vue';
@@ -33,7 +32,7 @@ import TodoFilters from '@/components/TodoFilters.vue';
     TodoFilters,
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('todos', [
       'activeTodos',
       'doneTodos',
     ]),
@@ -46,7 +45,7 @@ export default class TheFooter extends Vue {
   }
 
   private clearCompleted() {
-    this.$store.dispatch(CLEAR_COMPLETED);
+    this.$store.dispatch('todos/CLEAR_COMPLETED');
   }
 
   private setFilter(name: string) {
@@ -85,4 +84,3 @@ export default class TheFooter extends Vue {
 	}
 }
 </style>
-

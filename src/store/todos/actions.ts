@@ -1,3 +1,6 @@
+import { ActionTree } from 'vuex';
+import { RootState, TodosState } from '../types';
+
 import {
   ADD_TODO,
   REMOVE_TODO,
@@ -6,9 +9,10 @@ import {
   MARK_TODO,
   MARK_TODOS,
   CLEAR_COMPLETED,
-} from './mutation-types';
+} from '../constants';
 
-export default {
+
+export const actions: ActionTree<TodosState, RootState> = {
   [ADD_TODO]: ({ commit }, name: string) => commit('ADD_TODO', name),
   [REMOVE_TODO]: ({ commit }, todo: object) => commit('REMOVE_TODO', todo),
   [UPDATE_TODO]: ({ commit }, payload: object) => commit('UPDATE_TODO', payload),

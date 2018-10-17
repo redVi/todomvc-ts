@@ -51,12 +51,12 @@ export default class App extends Vue {
   private currentFilter = 'active';
 
   get doneTodos() {
-    return this.$store.state.todos.every((todo) => todo.done);
+    return this.$store.state.todos.todos.every((todo) => todo.done);
   }
 
   private markTodos() {
     this.flag = this.doneTodos ? false : true;
-    this.$store.dispatch('MARK_TODOS', this.flag);
+    this.$store.dispatch('todos/MARK_TODOS', this.flag);
   }
 
   private setFilter(event: string) {

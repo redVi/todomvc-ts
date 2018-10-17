@@ -1,3 +1,6 @@
+import { MutationTree } from 'vuex';
+import { TodosState } from '../types';
+
 import {
   ADD_TODO,
   REMOVE_TODO,
@@ -6,22 +9,20 @@ import {
   MARK_TODO,
   MARK_TODOS,
   CLEAR_COMPLETED,
-} from './mutation-types';
+} from '../constants';
 
 const findItem = (state, todo) => {
   const elem = state.todos.find((t) => t.name === todo.name);
   return elem ? elem : {};
 };
 
-export default {
+export const mutations: MutationTree<TodosState> = {
   [ADD_TODO](state, name) {
-    const todo = {
+    state.todos.unshift({
       editing: false,
       done: false,
       name,
-    };
-
-    state.todos.unshift(todo);
+    });
   },
   [REMOVE_TODO](state, todo) {
     state.todos.splice(state.todos.indexOf(todo), 1);

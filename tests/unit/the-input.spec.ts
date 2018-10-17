@@ -1,4 +1,4 @@
-import mutations from '@/store/mutations';
+import { mutations } from '@/store/todos/mutations';
 
 describe('TheInput.vue', () => {
   it('adds new todo correctly', () => {

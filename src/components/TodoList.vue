@@ -41,37 +41,28 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { mapGetters } from 'vuex';
-import { Todo } from '@/types';
-import {
-  REMOVE_TODO,
-  UPDATE_TODO,
-  EDIT_TODO,
-  MARK_TODO,
-} from '@/store/mutation-types';
-
+import { mapGetters, mapActions } from 'vuex';
+import { Todo } from '@/store/types';
 import TodoButton from '@/components/TodoButton.vue';
 
 @Component({
-  components: {TodoButton},
+  components: { TodoButton },
+  computed: {
+    ...mapGetters('todos', [
+      'allTodos',
+      'activeTodos',
+      'doneTodos',
+    ]),
+  },
 })
 export default class TodoList extends Vue {
   @Prop()
   private filter!: string;
+  private allTodos?: [];
+  private doneTodos?: [];
+  private activeTodos?: [];
 
   private newName = '';
-
-  get allTodos() {
-    return this.$store.getters.allTodos;
-  }
-
-  get doneTodos() {
-    return this.$store.getters.doneTodos;
-  }
-
-  get activeTodos() {
-    return this.$store.getters.activeTodos;
-  }
 
   get list() {
     switch (true) {
@@ -82,11 +73,11 @@ export default class TodoList extends Vue {
   }
 
   private removeTodo(todo: Todo) {
-    this.$store.dispatch(REMOVE_TODO, todo);
+    this.$store.dispatch('todos/REMOVE_TODO', todo);
   }
 
   private updateTodo(todo: Todo, name: string) {
-    this.$store.dispatch(UPDATE_TODO, {
+    this.$store.dispatch('todos/UPDATE_TODO', {
       todo,
       newName: name || todo.name,
     });
@@ -94,12 +85,12 @@ export default class TodoList extends Vue {
 
   private editTodo(todo: Todo) {
     this.newName = todo.name;
-    this.$store.dispatch(EDIT_TODO, todo);
+    this.$store.dispatch('todos/EDIT_TODO', todo);
   }
 
   private markTodo(todo: Todo, event) {
     this.newName = event.target.value;
-    this.$store.dispatch(MARK_TODO, todo);
+    this.$store.dispatch('todos/MARK_TODO', todo);
   }
 }
 </script>
