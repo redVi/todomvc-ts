@@ -10,7 +10,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mapActions } from 'vuex';
 
 @Component
 export default class TheInput extends Vue {

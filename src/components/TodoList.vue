@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { Todo } from '@/store/types';
 import TodoButton from '@/components/TodoButton.vue';
 

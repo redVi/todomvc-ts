@@ -23,11 +23,11 @@ export default class TodoCount extends Vue {
 
 <style scoped>
 .todo-count {
-	float: left;
-	text-align: left;
+  float: left;
+  text-align: left;
 }
 
 .todo-count strong {
-	font-weight: 300;
+  font-weight: 300;
 }
 </style>
