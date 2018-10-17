@@ -21,11 +21,11 @@
 
         <label>{{ todo.name }}</label>
 
-        <button
+        <todo-button
           class="destroy"
           aria-label="destroy"
-          @click.prevent="removeTodo(todo)"
-        ></button>
+          @action="removeTodo(todo)"
+        />
 
       </div>
 
@@ -42,15 +42,19 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import { Todo } from '../types';
+import { Todo } from '@/types';
 import {
   REMOVE_TODO,
   UPDATE_TODO,
   EDIT_TODO,
   MARK_TODO,
-} from '../store/mutation-types';
+} from '@/store/mutation-types';
 
-@Component
+import TodoButton from '@/components/TodoButton.vue';
+
+@Component({
+  components: {TodoButton},
+})
 export default class TodoList extends Vue {
   @Prop()
   private filter!: string;

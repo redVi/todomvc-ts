@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { ADD_TODO } from '../store/mutation-types';
+import { ADD_TODO } from '@/store/mutation-types';
 
 @Component
 export default class TheInput extends Vue {

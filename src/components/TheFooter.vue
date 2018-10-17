@@ -1,29 +1,17 @@
 <template>
   <footer class="footer">
 
-    <span class="todo-count">
-      <strong>{{ activeTodos.length | pluralize }}</strong>
-    </span>
+    <todo-count :list="activeTodos.length" />
 
-    <ul class="filters">
+    <todo-filters @filter="setFilter" />
 
-      <li v-for="(item, index) in filterList" :key="index">
-        <a
-          :class="{ 'selected': item === selectedFilter }"
-          href=""
-          @click.prevent="setFilter(item)"
-        >{{ item }}</a>
-      </li>
-
-    </ul>
-
-    <button
+    <todo-button
       v-show="doneTodos.length"
       class="clear-completed"
-      @click="clearCompleted"
+      @action="clearCompleted"
     >
       Clear completed
-    </button>
+    </todo-button>
 
   </footer>
 </template>
@@ -31,27 +19,27 @@
 <script lang="ts">
 import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import { Todo } from '../types';
-import { CLEAR_COMPLETED } from '../store/mutation-types';
+import { Todo } from '@/types';
+import { CLEAR_COMPLETED } from '@/store/mutation-types';
+
+import TodoButton from '@/components/TodoButton.vue';
+import TodoCount from '@/components/TodoCount.vue';
+import TodoFilters from '@/components/TodoFilters.vue';
 
 @Component({
+  components: {
+    TodoButton,
+    TodoCount,
+    TodoFilters,
+  },
   computed: {
     ...mapGetters([
       'activeTodos',
       'doneTodos',
     ]),
   },
-  filters: {
-    pluralize(length?: number): string {
-      const word = length === 1 ? 'item' : 'items';
-      return `${length} ${word} left`;
-    },
-  },
 })
 export default class TheFooter extends Vue {
-  private filterList = [ 'active', 'all', 'done' ];
-  private selectedFilter = this.filterList[0];
-
   @Emit()
   private filter(name) {
     return name;
@@ -62,19 +50,39 @@ export default class TheFooter extends Vue {
   }
 
   private setFilter(name: string) {
-    this.selectedFilter = name;
-
-    switch (name) {
-      case 'active':
-        this.filter('active');
-        break;
-      case 'done':
-        this.filter('done');
-        break;
-      default:
-        this.filter('all');
-        break;
-    }
+    this.filter(name);
   }
 }
 </script>
+
+<style scoped>
+.footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+}
+
+.footer:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 430px) {
+	.footer {
+		height: 50px;
+	}
+}
+</style>
+

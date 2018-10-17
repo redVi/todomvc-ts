@@ -2,7 +2,9 @@
   <div id="app">
 
     <section class="todoapp">
-      <the-header />
+
+      <the-header title="todos" />
+
       <the-input />
 
       <main class="main">
@@ -17,6 +19,7 @@
       </main>
 
       <the-footer @filter="setFilter" />
+
     </section>
 
     <footer class="info" role="contentinfo">
