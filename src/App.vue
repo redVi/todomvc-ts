@@ -32,11 +32,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mapGetters } from 'vuex';
-import TheHeader from './components/TheHeader.vue';
-import TheInput from './components/TheInput.vue';
-import TodoList from './components/TodoList.vue';
-import TheFooter from './components/TheFooter.vue';
+import TheHeader from '@/components/TheHeader.vue';
+import TheInput from '@/components/TheInput.vue';
+import TodoList from '@/components/TodoList.vue';
+import TheFooter from '@/components/TheFooter.vue';
 
 @Component({
   components: {
@@ -55,7 +54,7 @@ export default class App extends Vue {
   }
 
   private markTodos() {
-    this.flag = this.doneTodos ? false : true;
+    this.flag = !this.doneTodos;
     this.$store.dispatch('todos/MARK_TODOS', this.flag);
   }
 
