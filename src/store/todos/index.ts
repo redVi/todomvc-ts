@@ -6,9 +6,9 @@ import { RootState, TodosState } from '../types';
 
 export const state: TodosState = {
   todos: [
-    { name: 'To make myself happy', done: true, editing: false },
-    { name: 'Buy the car', done: false, editing: false },
-    { name: 'Become President of USA', done: false, editing: false },
+    { name: 'To make myself happy', done: true, editing: false, id: 1 },
+    { name: 'Buy the car', done: false, editing: false, id: 2 },
+    { name: 'Become President of USA', done: false, editing: false, id: 3 },
   ],
 };
 

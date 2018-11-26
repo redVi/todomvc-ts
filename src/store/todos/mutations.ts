@@ -11,6 +11,8 @@ import {
   CLEAR_COMPLETED,
 } from '../constants';
 
+let id = 100;
+
 const findItem = (state, todo) => {
   const elem = state.todos.find((t) => t.name === todo.name);
   return elem ? elem : {};
@@ -22,6 +24,7 @@ export const mutations: MutationTree<TodosState> = {
       editing: false,
       done: false,
       name,
+      id: id += 1,
     });
   },
   [REMOVE_TODO](state, todo) {

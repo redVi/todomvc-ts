@@ -1,8 +1,8 @@
 <template>
   <ul class="todo-list">
     <li
-      v-for="(todo, index) in list"
-      :key="index"
+      v-for="todo in list"
+      :key="todo.id"
       :class="{ completed: todo.done, editing: todo.editing }"
       class="todo"
       @dblclick="editTodo(todo)"

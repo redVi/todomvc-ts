@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
+import { Component, Emit, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
 import TodoButton from '@/components/TodoButton.vue';

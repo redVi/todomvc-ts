@@ -3,7 +3,7 @@ import { mutations } from '@/store/todos/mutations';
 describe('TheInput.vue', () => {
   it('adds new todo correctly', () => {
     const todos = [
-      { name: 'Mike', done: false, editing: false },
+      { name: 'Mike', done: false, editing: false, id: 101 },
     ];
     const state = { todos: [] };
 
