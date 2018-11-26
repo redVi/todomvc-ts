@@ -2,7 +2,7 @@ import TodoCount from '@/components/TodoCount.vue';
 import { shallowMount } from '@vue/test-utils';
 
 describe('TodoCount.vue', () => {
-  const wrapper = shallowMount(TodoCount, { propsData: { list: 2 } });
+  const wrapper = shallowMount( TodoCount, { propsData: { list: 2 } } );
 
   it('correctly declines words', () => {
     // exact text match

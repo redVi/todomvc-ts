@@ -8,6 +8,6 @@ describe('TheInput.vue', () => {
     const state = { todos: [] };
 
     mutations.ADD_TODO(state, 'Mike');
-    expect(state.todos).toEqual(todos);
+    expect( state.todos ).toEqual(todos);
   });
 });

@@ -29,7 +29,7 @@ export default class TodoFilters extends Vue {
   }
 
   private setFilter(name: string) {
-    this.selectedFilter = name;
+    this.selectedFilter = name || 'active';
     this.filter(name);
   }
 }

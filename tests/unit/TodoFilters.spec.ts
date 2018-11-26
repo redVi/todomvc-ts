@@ -6,7 +6,10 @@ describe('TodoFilter.vue', () => {
 
   beforeEach(() => {
     wrapper = shallowMount(TodoFilters);
-    wrapper.setData({ selectedFilter: 'active' });
+    wrapper.setData({
+      filterList: [ 'active', 'all', 'done' ],
+      selectedFilter: 'active',
+    });
   });
 
   it('has filters', () => {
@@ -20,6 +23,7 @@ describe('TodoFilter.vue', () => {
     // second element with active class after click
     wrapper.findAll('.filters a').at(1).trigger('click');
     expect( wrapper.findAll('.filters a').at(1).classes() ).toContain('selected');
+    expect( wrapper.find('.filters a').classes('selected') ).toBeFalsy();
   });
 
   it('correct change filter name with "setFilter" method', () => {
@@ -27,5 +31,12 @@ describe('TodoFilter.vue', () => {
 
     expect( wrapper.emitted().filter ).toBeDefined();
     expect( wrapper.vm.selectedFilter ).toBe('all');
+  });
+
+  it('has filter by default', () => {
+    wrapper.vm.setFilter('done');
+    wrapper.vm.setFilter();
+
+    expect( wrapper.vm.selectedFilter ).toBe('active');
   });
 });
