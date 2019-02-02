@@ -5,7 +5,7 @@ const state = {
     { name: 'Bob', done: true, editing: false, id: 101 },
     { name: 'Taylor', done: false, editing: false, id: 102 },
     { name: 'Mike', done: false, editing: false, id: 103 },
-  ]
+  ],
 };
 
 describe('TodoList.vue', () => {
