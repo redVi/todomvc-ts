@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://redvi.github.io/todomvc-ts/precache-manifest.3588a693fa247d69d9162686b3be5587.js"
+  "/todomvc-ts/precache-manifest.5ae18aa98193b9ccfad5afb3a6301dfc.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "todo-app"});
