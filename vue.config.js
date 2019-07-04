@@ -1,7 +1,7 @@
 const homepage = require('./package.json').homepage;
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production'
-    ? homepage + '/'
-    : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? homepage + '/' : '/',
+  crossorigin: 'anonymous',
+  productionSourceMap: false
 }
