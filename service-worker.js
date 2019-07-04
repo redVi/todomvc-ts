@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "http://redvi.github.io/todomvc-ts/precache-manifest.6a8990939d6297c53259379fb4934ae5.js"
+  "https://redvi.github.io/todomvc-ts/precache-manifest.3588a693fa247d69d9162686b3be5587.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "todo-app"});
