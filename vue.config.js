@@ -1,7 +1,5 @@
-const homepage = require('./package.json').homepage;
-
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? homepage + '/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/todomvc-ts/' : '/',
   crossorigin: 'anonymous',
   productionSourceMap: false
 }

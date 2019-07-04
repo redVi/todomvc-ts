@@ -2,7 +2,7 @@
   "name": "todo-app",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://redvi.github.io/todomvc-ts",
+  "homepage": "https://redvi.github.io",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
